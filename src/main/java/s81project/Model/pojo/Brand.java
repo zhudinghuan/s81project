@@ -1,6 +1,6 @@
 package s81project.Model.pojo;
 /**
- * 测试2
+ * 测试3
  * */
 public class Brand {
     private String goods_brand;
