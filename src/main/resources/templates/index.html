@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+<title>登录页面 - 光年(Light Year Admin)后台管理系统模板</title>
+<link rel="icon" href="favicon.ico" type="image/ico">
+<meta name="keywords" content="LightYear,光年,后台模板,后台管理系统,光年HTML模板">
+<meta name="description" content="LightYear是一个基于Bootstrap v3.3.7的后台管理系统的HTML模板。">
+<meta name="author" content="yinqi">
+<link href="css/bootstrap.min.css" rel="stylesheet">
+<link href="css/materialdesignicons.min.css" rel="stylesheet">
+<link href="css/style.min.css" rel="stylesheet">
+<!--  <script src="webjars/jquery/3.3.1-2/jquery.min.js"></script>-->
+  <script type="text/javascript" src="js/bootstrap.min.js"></script>
+  <script type="text/javascript" charset="utf-8" src="//g.alicdn.com/sd/ncpc/nc.js?t=2015052012"></script>
+  <script  type="text/javascript">
+//   var txt=document.getElementById("sspan").innerText;
+//
+// if (txt!=null){
+//   document.getElementById("sspan").hidden=false;
+// }
+  </script>
+<style>
+
+body {
+    display: -webkit-box;
+    display: flex;
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    align-items: center;
+    height: 100%;
+}
+.login-box {
+    display: table;
+    table-layout: fixed;
+    overflow: hidden;
+    max-width: 700px;
+}
+.login-left {
+    display: table-cell;
+    position: relative;
+    margin-bottom: 0;
+    border-width: 0;
+    padding: 45px;
+}
+.login-left .form-group:last-child {
+    margin-bottom: 0px;
+}
+.login-right {
+    display: table-cell;
+    position: relative;
+    margin-bottom: 0;
+    border-width: 0;
+    padding: 45px;
+    width: 50%;
+    max-width: 50%;
+    background: #67b26f!important;
+    background: -moz-linear-gradient(45deg,#67b26f 0,#4ca2cd 100%)!important;
+    background: -webkit-linear-gradient(45deg,#67b26f 0,#4ca2cd 100%)!important;
+    background: linear-gradient(45deg,#67b26f 0,#4ca2cd 100%)!important;
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#67b26f', endColorstr='#4ca2cd', GradientType=1 )!important;
+}
+.login-box .has-feedback.feedback-left .form-control {
+    padding-left: 38px;
+    padding-right: 12px;
+}
+.login-box .has-feedback.feedback-left .form-control-feedback {
+    left: 0;
+    right: auto;
+    width: 38px;
+    height: 38px;
+    line-height: 38px;
+    z-index: 4;
+    color: #dcdcdc;
+}
+.login-box .has-feedback.feedback-left.row .form-control-feedback {
+    left: 15px;
+}
+@media (max-width: 576px) {
+  .login-right {
+      display: none;
+  }   
+}
+</style>
+</head>
+  
+<body style="background-image: url(images/login-bg-2.jpg); background-size: cover;">
+
+<div class="bg-translucent p-10">
+  <div class="login-box bg-white clearfix">
+    <div class="login-left">
+      <form action="/login" method="post">
+        <div class="form-group has-feedback feedback-left">
+          <input type="text" placeholder="请输入您的用户名" class="form-control" name="username" id="username" />
+          <span class="mdi mdi-account form-control-feedback" aria-hidden="true"></span>
+        </div>
+        <div class="form-group has-feedback feedback-left">
+          <input type="password" placeholder="请输入密码" class="form-control" id="password" name="password" />
+          <span class="mdi mdi-lock form-control-feedback" aria-hidden="true"></span>
+        </div>
+
+        <div id="your-dom-id" class="nc-container"></div> <!--No-Captcha渲染的位置，其中 class 中必须包含 nc-container-->
+<!--        <div class="form-group has-feedback feedback-left row">-->
+<!--          <div class="col-xs-7">-->
+<!--            <input type="text" name="captcha" class="form-control" placeholder="验证码">-->
+<!--            <span class="mdi mdi-check-all form-control-feedback" aria-hidden="true"></span>-->
+<!--          </div>-->
+<!--          <div class="col-xs-5">-->
+<!--            <img src="images/captcha.png" class="pull-right" id="captcha" style="cursor: pointer;" onclick="this.src=this.src+'?d='+Math.random();" title="点击刷新" alt="captcha">-->
+<!--          </div>-->
+<!--        </div>-->
+        <div class="form-group">
+          <label class="lyear-checkbox checkbox-primary m-t-10">
+            <input type="checkbox"><span>5天内自动登录</span>
+
+            <span   id="sspan" style="color: red">${message}</span>
+
+          </label>
+        </div>
+        <div class="form-group">
+          <button class="btn btn-block btn-primary" type="submit" onclick="location.href='index.html'">立即登录</button>
+        </div>
+      </form>
+    </div>
+    <div class="login-right">
+      <p><img src="images/logo.png" class="m-b-md m-t-xs" alt="logo"></p>
+      <p class="text-white m-tb-15">S81shop是一个基于Bootstrap v3.3.7的后台管理系统</p>
+      <p class="text-white">Copyright © 2020 <a href="http://sunjob.com">zhudinghuan</a>. All right reserved</p>
+    </div>
+  </div>
+</div>
+<script type="text/javascript">
+  var nc_token = ["FFFF0N0000000000963C", (new Date()).getTime(), Math.random()].join(':');
+  var NC_Opt =
+          {
+            renderTo: "#your-dom-id",
+            appkey: "FFFF0N0000000000963C",
+            scene: "nc_login",
+            token: nc_token,
+            customWidth: 300,
+            trans:{"key1":"code0"},
+            elementID: ["usernameID"],
+            is_Opt: 0,
+            language: "cn",
+            isEnabled: true,
+            timeout: 3000,
+            times:5,
+            apimap: {
+              // 'analyze': '//a.com/nocaptcha/analyze.jsonp',
+              // 'get_captcha': '//b.com/get_captcha/ver3',
+              // 'get_captcha': '//pin3.aliyun.com/get_captcha/ver3'
+              // 'get_img': '//c.com/get_img',
+              // 'checkcode': '//d.com/captcha/checkcode.jsonp',
+              // 'umid_Url': '//e.com/security/umscript/3.2.1/um.js',
+              // 'uab_Url': '//aeu.alicdn.com/js/uac/909.js',
+              // 'umid_serUrl': 'https://g.com/service/um.json'
+            },
+            callback: function (data) {
+              window.console && console.log(nc_token)
+              window.console && console.log(data.csessionid)
+              window.console && console.log(data.sig)
+              $.ajax({
+                url: "/check?token=" + nc_token,
+                type: "post",
+                dataType: "text",
+                data: data,
+                success:function (json) {
+
+                  result = true;
+                  if (json == "ok") {
+                    result = true;
+                  }
+                },error:function(result) {
+                  alert("error");
+
+                }
+              });
+            }
+          }
+  var nc = new noCaptcha(NC_Opt)
+  nc.upLang('cn', {
+    _startTEXT: "请按住滑块，拖动到最右边",
+    _yesTEXT: "验证通过",
+    _error300: "哎呀，出错了，点击<a href=\"javascript:__nc.reset()\">刷新</a>再来一次",
+    _errorNetwork: "网络不给力，请<a href=\"javascript:__nc.reset()\">点击刷新</a>",
+  })
+</script>
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/bootstrap.min.js"></script>
+<script type="text/javascript">
+;
+</script>
+</body>
+</html>
