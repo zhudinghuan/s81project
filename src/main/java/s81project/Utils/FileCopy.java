@@ -18,7 +18,6 @@ public class FileCopy {
      * @param desDir  目的目录
      * @param oldFile 源文件名
      * @return
-     * jj
      */
     public static boolean copy(HttpServletRequest request, String srcDir,
                                String desDir, String oldFile) {
