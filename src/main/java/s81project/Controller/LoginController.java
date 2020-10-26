@@ -33,7 +33,8 @@ public class LoginController {
         // Create a new IClientProfile instance
         IClientProfile profile= DefaultProfile.getProfile(regionid, "LTAI4GAgSANzzJnFcmA7eeiJ", "fdlunC1GhEug8ZwJ2dgT11doRkeWGR");
         IAcsClient client = new DefaultAcsClient(profile);
-        DefaultProfile.addEndpoint("cn-hangzhou", "cn-hangzhou", "afs", "afs.aliyuncs.com");
+        //添加阿里云密钥
+        DefaultProfile.addEndpoint();
         String sessionId=req.getParameter("csessionid");
         String token=req.getParameter("token");
         AuthenticateSigRequest request = new AuthenticateSigRequest();
