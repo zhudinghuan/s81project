@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>物流交易网</title>
+		<link rel="stylesheet" type="text/css" href="./bootstrap/css/bootstrap.min.css" />
+		<!-- <link href="css/bootstrap.css" rel="stylesheet" type="text/css" /> -->
+		<link href="css/city-picker.css" rel="stylesheet" type="text/css" />
+		<script src="js/jquery.min.js" type="text/javascript" charset="UTF-8"></script>
+		<script src="./bootstrap/js/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/city-picker.data.js"></script>
+		<script src="js/city-picker.js"></script>
+		<script src="js/main.js"></script>
+		<!--时间控件-->
+		<!-- 	<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script>
+		<script src="js/jquery.min.js" type="text/javascript" charset="utf-8"></script> -->
+		<!-- <script src="https://cdn.bootcss.com/moment.js/2.24.0/moment.js"></script> -->
+		<script src="datepiker/moment.js.js" type="text/javascript" charset="utf-8"></script>
+		<!-- <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"> -->
+		<link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css" />
+		<!-- <link href="https://cdn.bootcss.com/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.min.css" rel="stylesheet"> -->
+		<link rel="stylesheet" type="text/css" href="datepiker/bootstrap-datetimepicker.min.css" />
+		<!-- <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
+		<!-- <script src="bootstrap/js/bootstrap.min.js" type="text/javascript" charset="utf-8"></script> -->
+		<!-- <link href="https://cdn.bootcss.com/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker-standalone.min.css" rel="stylesheet"> -->
+		<link rel="stylesheet" type="text/css" href="datepiker/bootstrap-datetimepicker-standalone.min.css" />
+		<!-- <script src="https://cdn.bootcss.com/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script> -->
+		<script src="datepiker/bootstrap-datetimepicker.min.js" type="text/javascript" charset="utf-8"></script>
+		<!-- <script src="https://cdn.bootcss.com/bootstrap-datetimepicker/2.1.30/js/locales/bootstrap-datetimepicker.zh-CN.js"></script> -->
+		<script src="datepiker/bootstrap-datetimepicker.zh-CN.js" type="text/javascript" charset="utf-8"></script>
+		<style type="text/css">
+			a:hover {
+				text-decoration: none;
+				color: #ffaa00;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="container">
+			<div class="panel-heading">
+				<div class="col-md-4">
+					<img src="img/shangbiao.png" height="65px" width="300px">
+				</div>
+				<ul class="nav nav-pills" style="font-size:18px;padding-top:10px ;">
+					<li class="col-md-1"></li>
+					<li class="active"> <a href="index.html">网站首页</a></li>
+					<li class="col-md-1"></li>
+					<li><a href="main.html">在线下单</a></li>
+					<li class="col-md-2"></li>
+					<span class="glyphicon glyphicon-user" style="padding-top: 10px;"></span><a href="login.html" style="font-size: 14px;margin-left: 15px;">登录</a>
+					|<a href="register.html" style="font-size: 14px;display: inline;padding-left: 5px;">注册</a>
+				</ul>
+			</div>
+		</div>
+		<div class="container">
+			<div class="col-md-2 col-md-offset-1" style="height: 560px;border: #000000 1px solid;font-size: 20px;margin-top: 40px;">
+				<div class="panel-group" id="accordion">
+					<div class="panel panel-success">
+						<div class="panel-heading">
+							<h4 class="panel-title">
+								<a data-toggle="collapse" data-parent="#accordion" style="font-size: 20px;" href="#collapseOne">
+									寄件服务
+								</a>
+							</h4>
+						</div>
+						<div id="collapseOne" class="panel-collapse collapse in">
+							<div class="panel-body">
+								<a href="">在线下单</a>
+							</div>
+						</div>
+					</div>
+					<div class="panel panel-success">
+						<div class="panel-heading">
+							<h4 class="panel-title">
+								<a data-toggle="collapse" style="font-size: 20px;" data-parent="#accordion" href="#collapseTwo">
+									订单管理
+								</a>
+							</h4>
+						</div>
+						<div id="collapseTwo" class="panel-collapse collapse">
+							<div class="panel-body">
+								<a href="../">我的订单</a>
+							</div>
+							<div class="panel-body">
+								<a href="../">订单查询</a>
+							</div>
+						</div>
+					</div>
+					<div class="panel panel-success">
+						<div class="panel-heading">
+							<h4 class="panel-title">
+								<a data-toggle="collapse" style="font-size: 20px;" data-parent="#accordion" href="#collapseThree">
+									账户管理
+								</a>
+							</h4>
+						</div>
+						<div id="collapseThree" class="panel-collapse collapse">
+							<div class="panel-body">
+								<a href="../">个人资料管理</a>
+							</div>
+							<div class="panel-body">
+								<a href="../">修改账户密码</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-7 col-md-offset-1" style="height: 600px;border: #000000 1px solid;">
+				<h3 class="text-center" <strong>在线下单</strong></h3>
+				<div class="row">
+					<div class="col-md-offset-2 col-md-8" style="border: #000000 1px solid;padding-top:50px ; height: 400px;">
+						<form action="a" class="form-horizontal" role="form">
+							<div class="form-group" id="distpicker1">
+								<label for="arrival" class="control-label col-md-3">到达地</label>
+								<div class="col-md-8 ">
+									<input type="text" id="city-picker3" readonly class="form-control" value="江苏省/常州市" data-toggle="city-picker" />
+									<!-- <a href="index.html">
+										<span class="glyphicon glyphicon-map-marker form-control-feedback  "></span>
+									</a> -->
+								</div>
+							</div>
+							<div class="form-group" id="distpicker">
+								<label for="arrival" class="control-label col-md-3">到达地</label>
+								<div class="col-md-8 ">
+									<input type="text" id="city-picker2" readonly class="form-control" value="江苏省/常州市" data-toggle="city-picker" />
+									<!-- <a href="index.html">
+										<span class="glyphicon glyphicon-map-marker form-control-feedback  "></span>
+									</a> -->
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="control-label col-md-3">选择日期</label>
+								<!--指定 date标记-->
+								<div class='input-group col-md-8' id='datetimepicker1'>
+									<input type='text' class="form-control" />
+									<span class="input-group-addon">
+										<span class="glyphicon glyphicon-calendar"></span>
+									</span>
+								</div>
+							</div>
+							<button style="margin-top: 30px;" type="button" class="btn btn-success col-md-offset-2 col-md-8" id="close">查询</button>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="panel panel-primary">
+			<div class="panel-heading">
+				<h4 class="text-center">2021@zhudinghuan &nbsp;&nbsp;&nbsp;&nbsp;版权所有，侵权必究</h4>
+			</div>
+
+		</div>
+	</body>
+	<script type="text/javascript">
+		$(function() {
+			$('#collapseTwo').collapse('show')
+		});
+		$(function() {
+			$('#collapseThree').collapse('toggle')
+		});
+		$(function() {
+			$('#collapseOne').collapse('show')
+		});
+		$(function() {
+			$('#datetimepicker1').datetimepicker({
+				format: 'YYYY-MM-DD',
+				locale: moment.locale('zh-cn')
+			});
+			$('#datetimepicker2').datetimepicker({
+				format: 'YYYY-MM-DD hh:mm',
+				locale: moment.locale('zh-cn')
+			});
+		});
+	</script>
+</html>

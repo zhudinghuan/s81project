@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--指定约束文件 作用是检查文件语法-->
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--命名空间为接口的全限定名称-->
+<mapper namespace="com.example.zhuzhourailway.Model.Dao.UserMapper">
+<select id="selectall" resultType="com.example.zhuzhourailway.Model.Pojo.User">
+    select * from user_info
+</select>
+    <select id="login" resultType="com.example.zhuzhourailway.Model.Pojo.User">
+    select * from user_info where usernumber=#{usernumber}
+</select>
+<insert id="adduser" parameterType="com.example.zhuzhourailway.Model.Pojo.User" >
+    insert into user_info(username,usernumber,pwd) values (#{username},#{usernumber},#{pwd})
+</insert>
+</mapper>
