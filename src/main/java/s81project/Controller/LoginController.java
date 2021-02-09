@@ -31,9 +31,10 @@ public class LoginController {
     public String checkres(HttpServletRequest req,Model model) throws ClientException {
         String regionid = "cn-hangzhou";
         // Create a new IClientProfile instance
-        IClientProfile profile= DefaultProfile.getProfile(regionid, "LTAI4GAgSANzzJnFcmA7eeiJ", "fdlunC1GhEug8ZwJ2dgT11doRkeWGR");
+                //添加阿里云密钥getProfile(regionid,accesskey,accesskey);
         IAcsClient client = new DefaultAcsClient(profile);
-        DefaultProfile.addEndpoint("cn-hangzhou", "cn-hangzhou", "afs", "afs.aliyuncs.com");
+
+       DefaultProfile.addEndpoint("cn-hangzhou", "cn-hangzhou","afs", "afs.aliyuncs.com");
         String sessionId=req.getParameter("csessionid");
         String token=req.getParameter("token");
         AuthenticateSigRequest request = new AuthenticateSigRequest();
