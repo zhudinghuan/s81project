@@ -46,9 +46,7 @@ public class UserController {
     @RequestMapping("/index.html")
     public String  index(HttpSession session,
                          Model model){
-        if (session!=null){
             model.addAttribute("user",session.getAttribute("user"));
-        }
         return "index";
     }
 
@@ -76,12 +74,23 @@ public class UserController {
                 return "login";
             }
     }
-    @ResponseBody
+
     @RequestMapping("/adduser")
-    public void adduser(@ModelAttribute User user,
+    public String adduser(@ModelAttribute User user,
                         Model model){
         service.adduser(user);
         model.addAttribute("target",1);
+        return "register";
+    }
+
+    @RequestMapping("/main.html")
+    public String main1(HttpSession session,Model model){
+        if (session.getAttribute("user")==null){
+            model.addAttribute("target",1);
+            return "index";
+        }
+        return "main";
+
     }
 
 }

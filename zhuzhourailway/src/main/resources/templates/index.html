@@ -50,6 +50,20 @@
 		}
 	</style>
 	<body>
+	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					<h4 class="modal-title text-center" id="myModalLabel" >提示</h4>
+				</div>
+				<div class="modal-body">您还未登录！请先登录</div>
+				<div class="modal-footer">
+					<a href="login.html" class="btn btn-primary col-md-2 col-md-offset-5"  target="_self">去登录</a>
+				</div>
+			</div><!-- /.modal-content -->
+		</div><!-- /.modal -->
+	</div>
 		<div class="container">
 			<div class="panel-heading">
 				<div class="col-md-4">
@@ -130,4 +144,10 @@
 			</div>
 		</div>
 	</body>
+	<script>
+		var result=${target!'0'};
+		if (result!=0){
+			$("#myModal").modal("show");
+		}
+	</script>
 </html>

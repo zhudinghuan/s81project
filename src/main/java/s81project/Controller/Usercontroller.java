@@ -17,7 +17,6 @@ import javax.servlet.http.HttpSession;
 public class Usercontroller {
     @Autowired
     Userservice userservice;
-//    User sp= spuser;
     @RequestMapping("/shouye")
     public String shouye(Model model,HttpSession session){
         model.addAttribute("username",session.getAttribute("username")) ;
