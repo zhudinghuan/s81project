@@ -19,22 +19,26 @@
 					<li class="col-md-1"></li>
 					<li><a href="main.html">在线下单</a></li>
 					<li class="col-md-2"></li>
-					<span class="glyphicon glyphicon-user" style="padding-top: 10px;"></span><a href="index.html" style="font-size: 14px;margin-left: 15px;">登录</a>
+					<#if user??>
+					<span class="glyphicon glyphicon-user" style="padding-top: 10px;"></span><a href="login.html" style="font-size: 14px;margin-left: 15px;">${user.username}</a>
+					<#else>
+					<span class="glyphicon glyphicon-user" style="padding-top: 10px;"></span><a href="login.html" style="font-size: 14px;margin-left: 15px;">登录</a>
 					|<a href="register.html" style="font-size: 14px;display: inline;padding-left: 5px;">注册</a>
+				</#if>
 				</ul>
 			</div>
 		</div>
 		<div class="container" style="height: 550px;border: #000000 1px solid;">
 			<div class="row panel-body">
 				<div class="col-md-offset-4 col-md-4">
-					<span class="place1"><strong>北京</strong></span>&nbsp;&nbsp; -->
-					<span class="place2"><strong>上海</strong></span>
+					<span class="place1"><strong>株洲</strong></span>&nbsp;&nbsp; -->
+					<span class="place2"><strong>${endstation}</strong></span>
 					&nbsp;&nbsp;
-					(<span class="time"><strong>1月20日</strong></span>)
+					(<span class="time"><strong>${day}</strong></span>)
 					&nbsp;&nbsp;
 					&nbsp;&nbsp;
 					共计<span id="train">
-						<strong>1</strong>
+						<strong>${total?default("0")}</strong>
 					</span>
 					个车次
 				</div>
@@ -51,16 +55,25 @@
 					<th style="vertical-align: middle;" class="text-center">剩余货箱数</th>
 					<th style="vertical-align: middle;" class="text-center">备注</th>
 				</tr>
-				<tr >
-					<td>面向对象</td>
-					<td>oracle</td>
-					<td>ajax</td>
-					<td>oracle</td>
-					<td>ajax</td>
-					<td>ajax</td>
-					<td>oracle</td>
+				<#if trainList?? && (trainList?size > 0)>
+				<#list trainList as train>
+				<tr>
+					<td>${train.trainid}</td>
+					<td>株洲</td>
+					<td>${train.endstation}</td>
+					<td>${train.starttime}</td>
+					<td>${train.endtime}</td>
+					<td>${train.lishi}</td>
+					<td>${train.carriage}</td>
 					<td><button type="button" class="form-control" style="background-color: #337AB7 ;color: whitesmoke;">预定</button></td>
 				</tr>
+			   </#list>
+			   <#else>
+			   <tr>
+				<td colspan="9" style="text-align: center">查无数据！</td>
+			  </tr>
+		       </#if>
+
 			</table>
 		</div>
 		<div class="panel panel-primary">

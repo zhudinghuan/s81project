@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--指定约束文件 作用是检查文件语法-->
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.zhuzhourailway.Model.Dao.TrainMapper">
+<select id="selecttrain" resultType="com.example.zhuzhourailway.Model.Pojo.Train">
+    select train.* from train right join train_day on train_day.trainid=train.trainid where endstation=#{endstation} and day=#{day}
+</select>
+</mapper>

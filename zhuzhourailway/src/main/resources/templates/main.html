@@ -47,8 +47,12 @@
 					<li class="col-md-1"></li>
 					<li><a href="main.html">在线下单</a></li>
 					<li class="col-md-2"></li>
+					<#if user??>
+					<span class="glyphicon glyphicon-user" style="padding-top: 10px;"></span><a href="login.html" style="font-size: 14px;margin-left: 15px;">${user.username}</a>
+					<#else>
 					<span class="glyphicon glyphicon-user" style="padding-top: 10px;"></span><a href="login.html" style="font-size: 14px;margin-left: 15px;">登录</a>
 					|<a href="register.html" style="font-size: 14px;display: inline;padding-left: 5px;">注册</a>
+				</#if>
 				</ul>
 			</div>
 		</div>
@@ -132,13 +136,13 @@
 								<label class="control-label col-md-3">选择日期</label>
 								<!--指定 date标记-->
 								<div class='input-group col-md-8' id='datetimepicker1'>
-									<input type='text' class="form-control" />
+									<input type='text' class="form-control day" />
 									<span class="input-group-addon">
 										<span class="glyphicon glyphicon-calendar"></span>
 									</span>
 								</div>
 							</div>
-							<button style="margin-top: 30px;" type="button" class="btn btn-success col-md-offset-2 col-md-8" id="close">查询</button>
+							<button style="margin-top: 30px;" type="button" onclick="search()" class="btn btn-success col-md-offset-2 col-md-8" id="close">查询</button>
 						</form>
 					</div>
 				</div>
@@ -171,6 +175,15 @@
 				locale: moment.locale('zh-cn')
 			});
 		});
-
 	</script>
+	 <script>
+	function search() {
+		var al=document.getElementsByClassName('select-item');
+		var endstation=al[1].innerText.toString();
+		var day=document.getElementsByClassName('day');
+		var day1=day[0].value.toString();
+		endstation=endstation.substring(0,endstation.length-1);
+		this.location.href="selecttrain?endstation="+endstation+"&day="+day1;
+	}
+     </script>
 </html>
