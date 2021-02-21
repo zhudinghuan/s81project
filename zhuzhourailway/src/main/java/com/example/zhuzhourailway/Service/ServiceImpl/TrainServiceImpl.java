@@ -77,5 +77,10 @@ public class TrainServiceImpl implements TrainService {
         return minutes;
     }
 
+    @Override
+    public Train selecttrainbyid(int id) {
+     return    trainMapper.selecttrainbyid(id);
+    }
+
 
 }

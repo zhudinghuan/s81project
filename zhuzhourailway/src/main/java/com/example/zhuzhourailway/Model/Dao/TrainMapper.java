@@ -11,4 +11,5 @@ import java.util.List;
 @Mapper
 public interface TrainMapper {
     List<Train> selecttrain(String endstation, String day);
+    Train selecttrainbyid(int id);
 }

@@ -48,4 +48,14 @@ public class TrainController {
         model.addAttribute("trainList",trainList);
         return "order-check";
     }
+
+    @RequestMapping("selecttrainbyid")
+    public String selecttrainbyid(@RequestParam("id") int id,
+                                  Model model,
+                                  HttpSession session){
+        Train train=trainService.selecttrainbyid(id);
+        model.addAttribute("train", train);
+        model.addAttribute("user",session.getAttribute("user"));
+        return "order-pay";
+    }
 }

@@ -4,7 +4,26 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.zhuzhourailway.Model.Dao.TrainMapper">
+    <resultMap id="trainAndDay" type="com.example.zhuzhourailway.Model.Pojo.Train">
+        <id property="id" column="id"></id>
+        <result property="trainid" column="trainid"></result>
+        <result property="startstation" column="startstation"></result>
+        <result property="endstation" column="endstation"></result>
+        <result property="starttime" column="starttime"></result>
+        <result property="endtime" column="endtime"></result>
+        <result property="price" column="price"></result>
+        <result property="carriage" column="carriage"></result>
+        <result property="overday" column="overday"></result>
+<!--        一对一的映射配置-->
+        <association property="trainday" javaType="com.example.zhuzhourailway.Model.Pojo.Trainday">
+            <id column="trainid" property="trainid"></id>
+            <result property="day" column="day"></result>
+        </association>
+    </resultMap>
 <select id="selecttrain" resultType="com.example.zhuzhourailway.Model.Pojo.Train">
     select train.* from train right join train_day on train_day.trainid=train.trainid where endstation=#{endstation} and day=#{day}
 </select>
+    <select id="selecttrainbyid" resultMap="trainAndDay" parameterType="com.example.zhuzhourailway.Model.Pojo.Train">
+         select train.*,train_day.day from train right join train_day on train_day.trainid=train.trainid where id=#{id}
+    </select>
 </mapper>

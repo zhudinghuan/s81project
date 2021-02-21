@@ -19,8 +19,12 @@
 					<li class="col-md-1"></li>
 					<li><a href="main.html">在线下单</a></li>
 					<li class="col-md-2"></li>
-					<span class="glyphicon glyphicon-user" style="padding-top: 10px;"></span><a href="index.html" style="font-size: 14px;margin-left: 15px;">登录</a>
+					<#if user??>
+					<span class="glyphicon glyphicon-user" style="padding-top: 10px;"></span><a href="login.html" style="font-size: 14px;margin-left: 15px;">${user.username}</a>
+					<#else>
+					<span class="glyphicon glyphicon-user" style="padding-top: 10px;"></span><a href="login.html" style="font-size: 14px;margin-left: 15px;">登录</a>
 					|<a href="register.html" style="font-size: 14px;display: inline;padding-left: 5px;">注册</a>
+				</#if>
 				</ul>
 			</div>
 		</div>
@@ -28,10 +32,10 @@
 		<div class="container" style="height: 500px;border: #000000 1px solid;">
 			<div class="row panel-body">
 				<div class="col-md-offset-4 col-md-4 text-center">
-					<span class="place1"><strong>北京</strong></span>&nbsp;&nbsp; -->
-					<span class="place2"><strong>上海</strong></span>
+					<span class="place1"><strong>${train.startstation}</strong></span>&nbsp;&nbsp; -->
+					<span class="place2"><strong>${train.endstation}</strong></span>
 					&nbsp;&nbsp;
-					(<span class="time"><strong>1月20日</strong></span>)
+					(<span class="time"><strong>${train.trainday.day}</strong></span>)
 
 					<!-- 共计<span id="train">
 						<strong>1</strong>
@@ -46,19 +50,24 @@
 					<th style="vertical-align: middle;" class="text-center">出发站</th>
 					<th style="vertical-align: middle;" class="text-center">到达站</th>
 					<th style="vertical-align: middle;" class="text-center">剩余货箱数</th>
-					<th style="vertical-align: middle;" class="text-center">商品类型</th>
-					<th style="vertical-align: middle;" class="text-center">所需车箱数</th>
 					<th style="vertical-align: middle;" class="text-center">价格</th>
+					<th style="vertical-align: middle;" class="text-center">所需车箱数</th>
+					<th style="vertical-align: middle;" class="text-center">总计</th>
 				</tr>
-				<tr >
-					<td>面向对象</td>
-					<td>oracle</td>
-					<td>ajax</td>
-					<td>oracle</td>
-					<td>ajax</td>
-					<td>ajax</td>
-					<td>oracle</td>
-					<!-- <td><button type="button" class="form-control" style="background-color: #337AB7 ;color: whitesmoke;">预定</button></td> -->
+				<tr class="order_lists">
+					<td>${train.trainid}</td>
+					<td>株洲</td>
+					<td>${train.endstation}</td>
+					<td>${train.carriage}</td>
+					<td class="price">￥${train.price}</td>
+					<td>
+						<div class="amount_box">
+							<a href="javascript:;" class="reduce reSty btn-sm" style="text-decoration: none;background-color: lightgray;">&nbsp;<strong>-</strong>&nbsp;</a>
+							<input type="text" value="1" class="sum" class="form-control" style="height: 23px;width: 41px;">
+							<a href="javascript:;" class="plus btn-sm" style="text-decoration: none;background-color: lightgray;">+</a>
+						</div>
+					</td>
+					<td class="sum_price">￥${train.price}</td>
 				</tr>
 			</table>
 			<button style="margin-top: 50px;" type="button" class="btn btn-success col-md-offset-4 col-md-4" id="close">支付宝支付</button>
@@ -71,6 +80,56 @@
 		</div>
 	</body>
 </html>
+<script type="text/javascript">
+	var $plus = $('.plus'),
+			$reduce = $('.reduce'),
+			$all_sum = $('.sum');
+	$plus.click(function() {
+		var $inputVal = $(this).prev('input'),
+				$count = parseInt($inputVal.val()) + 1,
+				$obj = $(this).parents('.amount_box').find('.reduce'),
+				$priceTotalObj = $(this).parents('.order_lists').find('.sum_price'),
+				$price = $(this).parents('.order_lists').find('.price').html(), //单价
+				$priceTotal = $count * parseInt($price.substring(1));
+		$inputVal.val($count);
+		$priceTotalObj.html('￥' + $priceTotal);
+		if ($inputVal.val() > 1 && $obj.hasClass('reSty')) {
+			$obj.removeClass('reSty');
+		}
+		// totalMoney();
+	});
 
+	$reduce.click(function() {
+		var $inputVal = $(this).next('input'),
+				$count = parseInt($inputVal.val()) - 1,
+				$priceTotalObj = $(this).parents('.order_lists').find('.sum_price'),
+				$price = $(this).parents('.order_lists').find('.price').html(), //单价
+				$priceTotal = $count * parseInt($price.substring(1));
+		if ($inputVal.val() > 1) {
+			$inputVal.val($count);
+			$priceTotalObj.html('￥' + $priceTotal);
+		}
+		if ($inputVal.val() == 1 && !$(this).hasClass('reSty')) {
+			$(this).addClass('reSty');
+		}
+		// totalMoney();
+	});
+
+	$all_sum.keyup(function() {
+		var $count = 0,
+				$priceTotalObj = $(this).parents('.order_lists').find('.sum_price'),
+				$price = $(this).parents('.order_lists').find('.price').html(), //单价
+				$priceTotal = 0;
+		if ($(this).val() == '') {
+			$(this).val('1');
+		}
+		$(this).val($(this).val().replace(/\D|^0/g, ''));
+		$count = $(this).val();
+		$priceTotal = $count * parseInt($price.substring(1));
+		$(this).attr('value', $count);
+		$priceTotalObj.html('￥' + $priceTotal);
+		// totalMoney();
+	})
+</script>
 </html>
 

@@ -1,6 +1,5 @@
 package com.example.zhuzhourailway.Model.Pojo;
 
-import java.sql.Time;
 
 public class Train {
     private int id;
@@ -13,6 +12,15 @@ public class Train {
     private int carriage;
     private int overday;
     private String lishi;
+    private Trainday trainday;
+
+    public Trainday getTrainday() {
+        return trainday;
+    }
+
+    public void setTrainday(Trainday trainday) {
+        this.trainday = trainday;
+    }
 
     public String getLishi() {
         return lishi;

@@ -10,4 +10,5 @@ public interface TrainService {
     long difhour(String starttime,String endtime,int overday);
     long difday(String starttime,String endtime,int overday);
     long difminutes(String starttime,String endtime,int overday);
+    Train selecttrainbyid(int id);
 }
