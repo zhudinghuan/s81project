@@ -82,5 +82,10 @@ public class TrainServiceImpl implements TrainService {
      return    trainMapper.selecttrainbyid(id);
     }
 
+    @Override
+    public int updateTrain(int carriage, int id) {
+       return trainMapper.updateTrain(carriage,id);
+    }
+
 
 }

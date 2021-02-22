@@ -11,4 +11,5 @@ public interface TrainService {
     long difday(String starttime,String endtime,int overday);
     long difminutes(String starttime,String endtime,int overday);
     Train selecttrainbyid(int id);
+    int updateTrain(int carriage,int id);
 }

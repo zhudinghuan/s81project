@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--指定约束文件 作用是检查文件语法-->
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.zhuzhourailway.Model.Dao.Ordermapper">
+    <insert id="addOrder" parameterType="com.example.zhuzhourailway.Model.Pojo.Order">
+        insert into order_table(orderid,totalprice,carriage,userid,id) values (#{orderid},#{totalprice},#{carriage},#{userid},#{id})
+    </insert>
+    <update id="updateOrder" parameterType="string">
+        update order_table set statu=1 where orderid=#{orderid}
+    </update>
+    <select id="selectOrderbyOuttradeno" resultType="com.example.zhuzhourailway.Model.Pojo.Order" parameterType="string">
+        select * from order_table where orderid=#{orderid}
+    </select>
+</mapper>

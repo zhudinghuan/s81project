@@ -30,6 +30,7 @@
 		</div>
 			<h1 class="text-center"><strong>确认订单</strong></h1>	
 		<div class="container" style="height: 500px;border: #000000 1px solid;">
+			<input class="hidden1" type="hidden" value="${train.id}">
 			<div class="row panel-body">
 				<div class="col-md-offset-4 col-md-4 text-center">
 					<span class="place1"><strong>${train.startstation}</strong></span>&nbsp;&nbsp; -->
@@ -58,19 +59,19 @@
 					<td>${train.trainid}</td>
 					<td>株洲</td>
 					<td>${train.endstation}</td>
-					<td>${train.carriage}</td>
+					<td >${train.carriage}</td>
 					<td class="price">￥${train.price}</td>
 					<td>
 						<div class="amount_box">
 							<a href="javascript:;" class="reduce reSty btn-sm" style="text-decoration: none;background-color: lightgray;">&nbsp;<strong>-</strong>&nbsp;</a>
-							<input type="text" value="1" class="sum" class="form-control" style="height: 23px;width: 41px;">
+							<input type="text" value="1" class="sum carriage" class="form-control" style="height: 23px;width: 41px;">
 							<a href="javascript:;" class="plus btn-sm" style="text-decoration: none;background-color: lightgray;">+</a>
 						</div>
 					</td>
 					<td class="sum_price">￥${train.price}</td>
 				</tr>
 			</table>
-			<button style="margin-top: 50px;" type="button" class="btn btn-success col-md-offset-4 col-md-4" id="close">支付宝支付</button>
+			<button style="margin-top: 50px;" onclick="pay()" class="btn btn-success col-md-offset-4 col-md-4" id="close">支付宝支付</button>
 		</div>
 		<div class="panel panel-primary">
 			<div class="panel-heading">
@@ -130,6 +131,15 @@
 		$priceTotalObj.html('￥' + $priceTotal);
 		// totalMoney();
 	})
+</script>
+<script>
+	function pay() {
+		var hadden1=document.getElementsByClassName('hidden1').item(0).value;
+		var sum_price=document.getElementsByClassName('sum_price').item(0).innerHTML;
+		var sum_price1=sum_price.substring(1,sum_price.length);
+		var carriage=document.getElementsByClassName('sum').item(0).value;
+		this.location.href="alipay?id="+hadden1+"&totalprice="+sum_price1+"&carriage="+carriage;
+	}
 </script>
 </html>
 

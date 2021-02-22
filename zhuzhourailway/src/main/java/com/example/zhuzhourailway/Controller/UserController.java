@@ -84,9 +84,11 @@ public class UserController {
     }
 
     @RequestMapping("/main.html")
-    public String main1(HttpSession session,Model model){
+    public String main1(HttpSession session
+            ,Model model){
         if (session.getAttribute("user")==null){
             model.addAttribute("target",1);
+            model.addAttribute("user",session.getAttribute("user"));
             return "index";
         }
         return "main";

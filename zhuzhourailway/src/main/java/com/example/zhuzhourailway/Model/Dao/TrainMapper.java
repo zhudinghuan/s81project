@@ -12,4 +12,5 @@ import java.util.List;
 public interface TrainMapper {
     List<Train> selecttrain(String endstation, String day);
     Train selecttrainbyid(int id);
+    int updateTrain(int carriage,int id);
 }

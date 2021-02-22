@@ -26,4 +26,7 @@
     <select id="selecttrainbyid" resultMap="trainAndDay" parameterType="com.example.zhuzhourailway.Model.Pojo.Train">
          select train.*,train_day.day from train right join train_day on train_day.trainid=train.trainid where id=#{id}
     </select>
+    <update id="updateTrain" parameterType="int">
+        update train set carriage=#{carriage} where id=#{id}
+    </update>
 </mapper>
