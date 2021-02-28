@@ -1,9 +1,60 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="utf-8">
-		<title></title>
-	</head>
-	<body>
-	</body>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+</head>
+<link rel="stylesheet" type="text/css" href="./bootstrap/css/bootstrap.min.css" />
+<script src="js/jquery.min.js" type="text/javascript" charset="UTF-8"></script>
+<script src="./bootstrap/js/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>
+<style type="text/css">
+	a:hover {
+		text-decoration: none;
+		color: #ffaa00;
+	}
+</style>
+<body>
+<div class="container">
+	<div class="panel-heading">
+		<div class="col-md-4">
+			<img src="img/shangbiao.png" height="65px" width="300px">
+		</div>
+		<ul class="nav nav-pills" style="font-size:18px;padding-top:10px ;">
+			<li class="col-md-1"></li>
+			<li class="active"> <a href="index.html">网站首页</a></li>
+			<li class="col-md-1"></li>
+			<li><a href="main.html">在线下单</a></li>
+			<li class="col-md-2"></li>
+			<#if user??>
+			<span class="glyphicon glyphicon-user" style="padding-top: 10px;"></span><a href="login.html" style="font-size: 14px;margin-left: 15px;">${user.username}</a>
+			<#else>
+			<span class="glyphicon glyphicon-user" style="padding-top: 10px;"></span><a href="login.html" style="font-size: 14px;margin-left: 15px;">登录</a>
+			|<a href="register.html" style="font-size: 14px;display: inline;padding-left: 5px;">注册</a>
+		</#if>
+		</ul>
+	</div>
+</div>
+<h1 class="text-center"><strong>购买成功</strong></h1>
+<div class="container" style="height: 500px;">
+	<div class="row" style="margin-top: 50px;">
+		<a class="glyphicon glyphicon-ok btn-lg col-md-offset-2"  javascript="void(0)" style="padding-top: 10px;"></a>
+		<span class="h3"><strong>付款成功，您已预定<span style="color: orangered;">${order.day}</span> 日从<span style="color: orangered;">${train.startstation}</span>到<span style="color: orangered;">${train.endstation}</span>的货箱</strong></span>
+	</div>
+	<div class="row" style="margin-top: 30px;">
+		<span class="col-md-offset-2">&nbsp;&nbsp;&nbsp;&nbsp;您的订单号：</span><span style="color: orangered;">${order.orderid}</span>
+		<span class="col-md-offset-1">车厢数：</span><span style="color: orangered;">${order.carriage}</span>
+		<span class="col-md-offset-1">已付金额：</span><span style="color: orangered;">${order.totalprice}</span>
+	</div>
+	<div class="row" style="margin-top: 80px;">
+		<span class="col-md-offset-2 col-md-2">现在，您可以：</span><a  class="col-md-1" href="index.html">返回首页</a>
+		<a href="main.html" class="col-md-2">查看订单状态</a>
+	</div>
+</div>
+<div class="panel panel-primary">
+	<div class="panel-heading">
+		<h4 class="text-center">2021@zhudinghuan &nbsp;&nbsp;&nbsp;&nbsp;版权所有，侵权必究</h4>
+	</div>
+
+</div>
+</body>
 </html>

@@ -12,6 +12,7 @@ import com.example.zhuzhourailway.Service.OrderService;
 import com.example.zhuzhourailway.Service.TrainService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
@@ -54,7 +55,8 @@ public class OrderController {
                        HttpSession session,
                        @RequestParam("id") int id,
                        @RequestParam("totalprice") float totalprice,
-                       @RequestParam("carriage") int carriage) throws IOException {
+                       @RequestParam("carriage") int carriage,
+                       @RequestParam("day") String day) throws IOException {
 
         SecureRandom r= new SecureRandom();
         //实例化客户端,填入所需参数
@@ -77,6 +79,7 @@ public class OrderController {
         order.setOrderid(out_trade_no);
         order.setCarriage(carriage);
         order.setTotalprice(totalprice);
+        order.setDay(day);
         User user= (User) session.getAttribute("user");
         order.setUserid(user.getUserid() );
         orderService.addOrder(order);
@@ -101,7 +104,9 @@ public class OrderController {
     }
 
     @RequestMapping("/alipayreturn")
-    public String alipayreturn(HttpServletRequest request, HttpServletResponse response) throws UnsupportedEncodingException, AlipayApiException {
+    public String alipayreturn(HttpServletRequest request, HttpServletResponse response,
+                               Model model,
+                               HttpSession session) throws UnsupportedEncodingException, AlipayApiException {
         Map<String, String> params = new HashMap<String, String>();
 
         Map<String, String[]> requestParams = request.getParameterMap();
@@ -123,18 +128,19 @@ public class OrderController {
         String trade_no = new String(request.getParameter("trade_no").getBytes("ISO-8859-1"), "UTF-8");
         // 付款金额
         String total_amount = new String(request.getParameter("total_amount").getBytes("ISO-8859-1"), "UTF-8");
-
+        Order order=orderService.selectOrderbyOuttradeno(out_trade_no);
+        Train train=trainService.selecttrainbyid(order.getId());
         executorService.execute(new Runnable() {
             @Override
             public void run() {
                 orderService.updateOrder(out_trade_no);
-                Order order=orderService.selectOrderbyOuttradeno(out_trade_no);
                 int reducecarriage=order.getCarriage();
-                Train train=trainService.selecttrainbyid(order.getId());
-                trainService.updateTrain(train.getCarriage()-reducecarriage,train.getId());
+                trainService.updateTrain(train.getTrainday().getLeftcarriage()-reducecarriage,order.getId());
             }
         });
-
+       model.addAttribute("order",order);
+       model.addAttribute("train",train);
+        model.addAttribute("user",session.getAttribute("user"));
         return "pay_success";
     }
 

@@ -83,8 +83,8 @@ public class TrainServiceImpl implements TrainService {
     }
 
     @Override
-    public int updateTrain(int carriage, int id) {
-       return trainMapper.updateTrain(carriage,id);
+    public int updateTrain(int leftcarriage, int t_id) {
+       return trainMapper.updateTrain(leftcarriage,t_id);
     }
 
 

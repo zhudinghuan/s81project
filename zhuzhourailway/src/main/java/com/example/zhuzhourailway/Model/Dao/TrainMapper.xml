@@ -16,17 +16,19 @@
         <result property="overday" column="overday"></result>
 <!--        一对一的映射配置-->
         <association property="trainday" javaType="com.example.zhuzhourailway.Model.Pojo.Trainday">
-            <id column="trainid" property="trainid"></id>
+            <id column="t_id" property="t_id"></id>
             <result property="day" column="day"></result>
+            <result property="id" column="id"></result>
+            <result property="leftcarriage" column="leftcarriage"></result>
         </association>
     </resultMap>
-<select id="selecttrain" resultType="com.example.zhuzhourailway.Model.Pojo.Train">
-    select train.* from train right join train_day on train_day.trainid=train.trainid where endstation=#{endstation} and day=#{day}
+<select id="selecttrain" resultMap="trainAndDay">
+    select train.*,train_day.* from train right join train_day on train_day.id=train.id where endstation=#{endstation} and day=#{day}
 </select>
-    <select id="selecttrainbyid" resultMap="trainAndDay" parameterType="com.example.zhuzhourailway.Model.Pojo.Train">
-         select train.*,train_day.day from train right join train_day on train_day.trainid=train.trainid where id=#{id}
+    <select id="selecttrainbyid" resultMap="trainAndDay" parameterType="int">
+         select train.*,train_day.* from train right join train_day on train_day.id=train.id where t_id=#{id}
     </select>
     <update id="updateTrain" parameterType="int">
-        update train set carriage=#{carriage} where id=#{id}
+        update train_day set leftcarriage=#{param1} where t_id=#{param2}
     </update>
 </mapper>

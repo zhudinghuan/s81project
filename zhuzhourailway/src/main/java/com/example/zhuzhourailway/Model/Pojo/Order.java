@@ -5,6 +5,16 @@ public class Order {
     private float totalprice;
     private int carriage;
     private int id;
+    private String day;
+
+    public String getDay() {
+        return day;
+    }
+
+    public void setDay(String day) {
+        this.day = day;
+    }
+
     private int userid;
 
     public int getUserid() {

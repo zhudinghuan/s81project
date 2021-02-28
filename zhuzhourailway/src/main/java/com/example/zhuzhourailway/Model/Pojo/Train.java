@@ -9,7 +9,6 @@ public class Train {
     private String  starttime;
     private String endtime;
     private float price;
-    private int carriage;
     private int overday;
     private String lishi;
     private Trainday trainday;
@@ -94,11 +93,4 @@ public class Train {
         this.price = price;
     }
 
-    public int getCarriage() {
-        return carriage;
-    }
-
-    public void setCarriage(int carriage) {
-        this.carriage = carriage;
-    }
 }

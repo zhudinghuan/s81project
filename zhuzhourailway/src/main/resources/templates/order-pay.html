@@ -30,13 +30,13 @@
 		</div>
 			<h1 class="text-center"><strong>确认订单</strong></h1>	
 		<div class="container" style="height: 500px;border: #000000 1px solid;">
-			<input class="hidden1" type="hidden" value="${train.id}">
+			<input class="hidden1" type="hidden" value="${train.trainday.t_id}">
 			<div class="row panel-body">
 				<div class="col-md-offset-4 col-md-4 text-center">
 					<span class="place1"><strong>${train.startstation}</strong></span>&nbsp;&nbsp; -->
 					<span class="place2"><strong>${train.endstation}</strong></span>
 					&nbsp;&nbsp;
-					(<span class="time"><strong>${train.trainday.day}</strong></span>)
+					(<span ><strong class="time">${train.trainday.day}</strong></span>)
 
 					<!-- 共计<span id="train">
 						<strong>1</strong>
@@ -59,7 +59,7 @@
 					<td>${train.trainid}</td>
 					<td>株洲</td>
 					<td>${train.endstation}</td>
-					<td >${train.carriage}</td>
+					<td >${train.trainday.leftcarriage}</td>
 					<td class="price">￥${train.price}</td>
 					<td>
 						<div class="amount_box">
@@ -138,7 +138,8 @@
 		var sum_price=document.getElementsByClassName('sum_price').item(0).innerHTML;
 		var sum_price1=sum_price.substring(1,sum_price.length);
 		var carriage=document.getElementsByClassName('sum').item(0).value;
-		this.location.href="alipay?id="+hadden1+"&totalprice="+sum_price1+"&carriage="+carriage;
+		var day=document.getElementsByClassName('time').item(0).innerHTML;
+		this.location.href="alipay?id="+hadden1+"&totalprice="+sum_price1+"&carriage="+carriage+"&day="+day;
 	}
 </script>
 </html>
