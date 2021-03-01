@@ -6,6 +6,25 @@ public class Order {
     private int carriage;
     private int id;
     private String day;
+    private int statu;
+
+    public int getStatu() {
+        return statu;
+    }
+
+    public void setStatu(int statu) {
+        this.statu = statu;
+    }
+
+    private Train train;
+
+    public Train getTrain() {
+        return train;
+    }
+
+    public void setTrain(Train train) {
+        this.train = train;
+    }
 
     public String getDay() {
         return day;

@@ -4,6 +4,32 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.zhuzhourailway.Model.Dao.Ordermapper">
+    <resultMap id="orderAndtrain" type="com.example.zhuzhourailway.Model.Pojo.Order">
+        <id column="orderid" property="orderid"></id>
+        <result column="totalprice" property="totalprice"></result>
+        <result column="carriage" property="carriage"></result>
+        <result column="id" property="id"></result>
+        <result column="day" property="day"></result>
+        <result column="statu" property="statu"></result>
+      <association property="train" javaType="com.example.zhuzhourailway.Model.Pojo.Train">
+          <id property="id" column="id"></id>
+          <result property="trainid" column="trainid"></result>
+          <result property="startstation" column="startstation"></result>
+          <result property="endstation" column="endstation"></result>
+          <result property="starttime" column="starttime"></result>
+          <result property="endtime" column="endtime"></result>
+          <result property="price" column="price"></result>
+          <result property="overday" column="overday"></result>
+          <!--        一对一的映射配置-->
+          <association property="trainday" javaType="com.example.zhuzhourailway.Model.Pojo.Trainday">
+              <id column="t_id" property="t_id"></id>
+              <result property="day" column="day"></result>
+              <result property="id" column="id"></result>
+              <result property="leftcarriage" column="leftcarriage"></result>
+          </association>
+      </association>
+
+    </resultMap>
     <insert id="addOrder" parameterType="com.example.zhuzhourailway.Model.Pojo.Order">
         insert into order_table(orderid,totalprice,carriage,userid,id,day) values (#{orderid},#{totalprice},#{carriage},#{userid},#{id},#{day})
     </insert>
@@ -12,5 +38,11 @@
     </update>
     <select id="selectOrderbyOuttradeno" resultType="com.example.zhuzhourailway.Model.Pojo.Order" parameterType="string">
         select * from order_table where orderid=#{orderid}
+    </select>
+    <select id="selectAllOrder" resultMap="orderAndtrain" >
+        select * from order_table left join train_day on order_table.id=train_day.t_id left join train on train_day.id=train.id
+    </select>
+    <select id="selectorderbyid" resultMap="orderAndtrain" parameterType="string">
+         select * from order_table left join train_day on order_table.id=train_day.t_id left join train on train_day.id=train.id where orderid=#{orderid}
     </select>
 </mapper>

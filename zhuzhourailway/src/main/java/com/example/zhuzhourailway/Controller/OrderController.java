@@ -10,6 +10,8 @@ import com.example.zhuzhourailway.Model.Pojo.Train;
 import com.example.zhuzhourailway.Model.Pojo.User;
 import com.example.zhuzhourailway.Service.OrderService;
 import com.example.zhuzhourailway.Service.TrainService;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,10 +23,7 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.security.SecureRandom;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
-import java.util.UUID;
+import java.util.*;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -180,5 +179,29 @@ public class OrderController {
         httpResponse.getWriter().write(form);// 直接将完整的表单html输出到页面
         httpResponse.getWriter().flush();
         httpResponse.getWriter().close();
+    }
+
+    @RequestMapping("/my_order.html")
+    public String my_order(Model model,
+                           HttpSession session,
+                           @RequestParam(required = false,defaultValue = "1",value = "pn")Integer pn){
+        PageHelper.startPage(pn,4);
+        List<Order> orderlist=orderService.selectAllOrder();
+        PageInfo<Order> pageInfo=new PageInfo<>(orderlist,4);
+        model.addAttribute("pageInfo",pageInfo);
+        model.addAttribute( "orderlist",orderlist);
+        model.addAttribute("user",session.getAttribute("user"));
+        return "my_order";
+    }
+
+    @RequestMapping("/selectorderbyid")
+    public String selectOrderbyid(HttpSession session,
+                                  @RequestParam(required = false ,value = "orderid")String orderid,
+                                  Model model){
+        System.out.println(1);
+        Order order=  orderService.selectorderbyid(orderid);
+        model.addAttribute("user",session.getAttribute("user"));
+        model.addAttribute( "order",order);
+        return "show_order";
     }
 }

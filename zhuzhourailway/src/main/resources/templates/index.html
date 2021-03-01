@@ -119,8 +119,8 @@
 				<h1 class="text-center" style="margin-top: 60px;"><strong>订单查询</strong></h1>
 				<div class="row">
 					<div class="col-md-offset-3 col-md-5">
-						<form class="search_form">
-							<input type="text" class="input_text" placeholder="请输入运单号">
+						<form class="search_form" method="post" action="/selectorderbyid">
+							<input type="text" class="input_text" name="orderid" placeholder="请输入订单号">
 							<input type="submit" value="搜索" class="input_sub">
 						</form>
 					</div>

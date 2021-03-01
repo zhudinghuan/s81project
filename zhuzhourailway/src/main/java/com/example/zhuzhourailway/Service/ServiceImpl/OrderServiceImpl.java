@@ -6,6 +6,8 @@ import com.example.zhuzhourailway.Service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class OrderServiceImpl implements OrderService {
 
@@ -24,5 +26,15 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public Order selectOrderbyOuttradeno(String orderid) {
         return ordermapper.selectOrderbyOuttradeno(orderid);
+    }
+
+    @Override
+    public List<Order> selectAllOrder() {
+        return ordermapper.selectAllOrder();
+    }
+
+    @Override
+    public Order selectorderbyid(String orderid) {
+        return ordermapper.selectorderbyid(orderid);
     }
 }

@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>查询订单</title>
+		<link rel="stylesheet" type="text/css" href="./bootstrap/css/bootstrap.min.css" />
+		<!-- <link href="css/bootstrap.css" rel="stylesheet" type="text/css" /> -->
+		<link href="css/city-picker.css" rel="stylesheet" type="text/css" />
+		<script src="js/jquery.min.js" type="text/javascript" charset="UTF-8"></script>
+		<script src="./bootstrap/js/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/city-picker.data.js"></script>
+		<script src="js/city-picker.js"></script>
+		<script src="js/main.js"></script>
+
+		<script src="datepiker/moment.js.js" type="text/javascript" charset="utf-8"></script>
+		<link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css" />
+		<style type="text/css">
+			a:hover {
+				text-decoration: none;
+				color: #ffaa00;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="container">
+			<div class="panel-heading">
+				<div class="col-md-4">
+					<img src="img/shangbiao.png" height="65px" width="300px">
+				</div>
+				<ul class="nav nav-pills" style="font-size:18px;padding-top:10px ;">
+					<li class="col-md-1"></li>
+					<li class="active"> <a href="index.html">网站首页</a></li>
+					<li class="col-md-1"></li>
+					<li><a href="main.html">在线下单</a></li>
+					<li class="col-md-2"></li>
+					<span class="glyphicon glyphicon-user" style="padding-top: 10px;"></span><a href="login.html" style="font-size: 14px;margin-left: 15px;">登录</a>
+					|<a href="register.html" style="font-size: 14px;display: inline;padding-left: 5px;">注册</a>
+				</ul>
+			</div>
+		</div>
+		<div class="container">
+			<div class="col-md-2 col-md-offset-1" style="height: 560px;font-size: 20px;margin-top: 40px;">
+				<div class="panel-group" id="accordion">
+					<div class="panel panel-success">
+						<div class="panel-heading">
+							<h4 class="panel-title">
+								<a data-toggle="collapse" data-parent="#accordion" style="font-size: 20px;" href="#collapseOne">
+									寄件服务
+								</a>
+							</h4>
+						</div>
+						<div id="collapseOne" class="panel-collapse collapse in">
+							<div class="panel-body">
+								<a href="/main.html">在线下单</a>
+							</div>
+						</div>
+					</div>
+					<div class="panel panel-success">
+						<div class="panel-heading">
+							<h4 class="panel-title">
+								<a data-toggle="collapse" style="font-size: 20px;" data-parent="#accordion" href="#collapseTwo">
+									订单管理
+								</a>
+							</h4>
+						</div>
+						<div id="collapseTwo" class="panel-collapse collapse">
+							<div class="panel-body">
+								<a href="/my_order.html">我的订单</a>
+							</div>
+							<div class="panel-body">
+								<a href="search_order.html">订单查询</a>
+							</div>
+						</div>
+					</div>
+					<div class="panel panel-success">
+						<div class="panel-heading">
+							<h4 class="panel-title">
+								<a data-toggle="collapse" style="font-size: 20px;" data-parent="#accordion" href="#collapseThree">
+									账户管理
+								</a>
+							</h4>
+						</div>
+						<div id="collapseThree" class="panel-collapse collapse">
+							<div class="panel-body">
+								<a href="../">个人资料管理</a>
+							</div>
+							<div class="panel-body">
+								<a href="../">修改账户密码</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-7 col-md-offset-1" style="height: 570px;border: #000000 1px solid;">
+				<h3 class="text-center" <strong>订单查询</strong></h3>
+				<form action="/selectorderbyid" style="margin-top: 70px;" method="put" class="form-horizontal" role="form">
+					<div class="form-group">
+						<label for="orderid" class="control-label col-md-3">请输入订单号：</label>
+						<div class="col-md-8">
+							<input type="text" id="orderid" name="orderid" class="form-control"  />
+						</div>
+						<div class="row" style="margin-top: 130px;">
+							<input  type="submit" value="查询" class="btn btn-success col-md-offset-4 col-md-4"/>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+		<div class="panel panel-primary">
+			<div class="panel-heading">
+				<h4 class="text-center">2021@zhudinghuan &nbsp;&nbsp;&nbsp;&nbsp;版权所有，侵权必究</h4>
+			</div>
+
+		</div>
+	</body>
+	<script type="text/javascript">
+		$(function() {
+			$('#collapseTwo').collapse('show')
+		});
+		$(function() {
+			$('#collapseThree').collapse('toggle')
+		});
+		$(function() {
+			$('#collapseOne').collapse('show')
+		});
+	</script>
+
+</html>

@@ -12,7 +12,6 @@
         <result property="starttime" column="starttime"></result>
         <result property="endtime" column="endtime"></result>
         <result property="price" column="price"></result>
-        <result property="carriage" column="carriage"></result>
         <result property="overday" column="overday"></result>
 <!--        一对一的映射配置-->
         <association property="trainday" javaType="com.example.zhuzhourailway.Model.Pojo.Trainday">
